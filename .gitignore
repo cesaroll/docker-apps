@@ -1,0 +1,6 @@
+*.log
+
+*/.vscode/
+
+*/.docker/zookeper/
+*/.docker/kafka/
