@@ -3,7 +3,12 @@
 # ? sddasdasd
 # TODO: adsasdasd
 
-version: '2'
+version: "3.5"
+
+volumes:
+  zookeper:
+  kafka:
+
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.3.0
@@ -15,8 +20,7 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     volumes:
-      - ./.docker/zookeper/data:/var/lib/zookeeper/data
-      - ./.docker/zookeper/log:/var/lib/zookeeper/log
+      - zookeper:/var/lib/zookeeper
 
   broker:
     image: confluentinc/cp-server:7.3.0
@@ -47,7 +51,7 @@ services:
       CONFLUENT_METRICS_ENABLE: 'true'
       CONFLUENT_SUPPORT_CUSTOMER_ID: 'anonymous'
     volumes:
-      - ./.docker/kafka/data:/var/lib/kafka/data
+      - kafka:/var/lib/kafka
 
   schema-registry:
     image: confluentinc/cp-schema-registry:7.3.0
